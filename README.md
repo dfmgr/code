@@ -1,6 +1,6 @@
 ## 👋 Welcome to code 🚀  
 
-Free code editor  
+Description  
   
   
 ### Requires scripts to be installed
@@ -9,45 +9,41 @@ Free code editor
 sudo bash -c "$(curl -q -LSsf "https://github.com/dfmgr/installer/raw/main/install.sh")" && sudo dfmgr install installer
 ```
 
-### Automatic install/update
+OR
+
+### Automatic install/update  
 
 ```shell
 dfmgr update code
 ```
-
-OR
-
-```shell
-bash -c "$(curl -q -LSsf "https://github.com/dfmgr/code/raw/main/install.sh")"
-```
   
-requirements:
+### requirements  
   
-Debian based:
+#### Debian based
 
 ```shell
 apt install code
 ```  
 
-Fedora Based:
+#### Fedora Based
 
 ```shell
 yum install code
 ```  
 
-Arch Based:
+#### Arch Based
 
 ```shell
 pacman -S code
 ```  
 
-MacOS:  
+#### MacOS  
 
 ```shell
 brew install code
 ```
   
-Manual install:  
+#### Manual install  
 
   ```shell
 APPDIR="$HOME/.local/share/CasjaysDev/dfmgr/code"
