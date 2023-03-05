@@ -28,17 +28,17 @@ if [[ "$1" == "--debug" ]]; then shift 1 && set -xo pipefail && export SCRIPT_OP
 # specify any functions here
 run_pre_install() {
   local exitCode=0
+  sudo -n true && sudo true || print_exit "sudo is required to install vs-code"
   { builtin type -P code &>/dev/null || builtin type -P code-insiders &>/dev/null; } && return 0
   if builtin type -P apt &>/dev/null; then
     (
       set -o pipefail
       export DEBIAN_FRONTEND="noninteractive"
-      sudo apt-get install wget gpg -yy
-      wget -qO- "https://packages.microsoft.com/keys/microsoft.asc" | gpg --dearmor >"/tmp/packages.microsoft.gpg" &&
-        sudo install -D -o root -g root -m 644 "/tmp/packages.microsoft.gpg" "/etc/apt/keyrings" &&
+      sudo apt-get install wget gpg -yy &&
+        wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor >/tmp/packages.microsoft.gpg &&
+        sudo install -D -o root -g root -m 644 /tmp/packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg &&
         sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list' &&
-        rm -f "/tmp/packages.microsoft.gpg" &&
-        sudo apt update
+        if [ -f "/tmp/packages.microsoft.gpg" ]; then rm -f /tmp/packages.microsoft.gpg; fi
     ) | tee &>/dev/null || exitCode=1
   elif builtin type dnf &>/dev/null || builtin type dnf &>/dev/null; then
     (
@@ -53,6 +53,10 @@ run_pre_install() {
       sudo rpm --import "https://packages.microsoft.com/keys/microsoft.asc" &&
         sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/zypp/repos.d/vscode.repo' &&
         sudo zypper refresh
+    ) | tee &>/dev/null || exitCode=1
+  elif builtin type yay &>/dev/null; then
+    (
+      yay -Syyu --noconfirm code
     ) | tee &>/dev/null || exitCode=1
   fi
   return ${?:-0}
