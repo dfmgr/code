@@ -140,10 +140,6 @@ __run_pre_install() {
         curl -q -LSs 'https://packages.microsoft.com/keys/microsoft.asc' | sudo gpg --dearmor -o /usr/share/keyrings/ms-vscode-keyring.gpg &&
         echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/ms-vscode-keyring.gpg] "https://packages.microsoft.com/repos/vscode" stable main' | sudo tee /etc/apt/sources.list.d/vscode.list &&
         sudo apt update -yy -q &>/dev/null || return 1
-      # wget -qO- "https://packages.microsoft.com/keys/microsoft.asc" | gpg --dearmor >/tmp/packages.microsoft.gpg &&
-      # sudo install -D -o root -g root -m 644 /tmp/packages.microsoft.gpg /etc/apt/trusted.gpg.d/packages.microsoft.gpg &&
-      # sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/trusted.gpg.d/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list' &&
-      # if [ -f "/tmp/packages.microsoft.gpg" ]; then rm -f /tmp/packages.microsoft.gpg; fi
     ) | tee &>/dev/null || exitCode=1
   elif __cmd_exists dnf &>/dev/null || __cmd_exists dnf &>/dev/null; then
     (
