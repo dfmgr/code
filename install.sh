@@ -183,8 +183,11 @@ __run_post_message() {
 # Define pre-install scripts
 __run_pre_install() {
   local getRunStatus=0
+  if { __cmd_exists code &>/dev/null || __cmd_exists code-insiders &>/dev/null || __cmd_exists code-oss &>/dev/null; }; then
+    unset AUR_PACKAGES
+    return 0
+  fi
   sudo -n true || sudo true || print_exit "sudo is required to install vs-code"
-  { __cmd_exists code &>/dev/null || __cmd_exists code-insiders &>/dev/null; } && return 0
   if __cmd_exists apt &>/dev/null; then
     (
       set -o pipefail
