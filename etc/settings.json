@@ -1,0 +1,315 @@
+{
+  "enableTelemetry": false,
+  "update.showReleaseNotes": false,
+  "debug.console.fontSize": 12,
+  "terminal.integrated.fontSize": 12,
+  "terminal.integrated.fontFamily": "monospace",
+  "terminal.integrated.env.windows": {},
+  "security.workspace.trust.untrustedFiles": "open",
+  "security.workspace.trust.enabled": false,
+  "editor.fontSize": 12,
+  "editor.codeLensFontSize": 12,
+  "editor.inlayHints.fontSize": 10,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": "active",
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.fontFamily": "'Fira Code', 'Hack Nerd Font', 'Consolas', 'Courier New', monospace",
+  "editor.fontLigatures": true,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.minimap.enabled": false,
+  "editor.quickSuggestionsDelay": 5,
+  "editor.renderWhitespace": "boundary",
+  "editor.suggestSelection": "first",
+  "editor.tabCompletion": "on",
+  "editor.tabSize": 2,
+  "editor.wordWrapColumn": 160,
+  "editor.linkedEditing": true,
+  "editor.cursorBlinking": "expand",
+  "editor.inlineSuggest.enabled": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.definitionLinkOpensInPeek": true,
+  "editor.autoIndent": "full",
+  "editor.acceptSuggestionOnCommitCharacter": true,
+  "editor.suggestOnTriggerCharacters": true,
+  "editor.wordBasedSuggestions": true,
+  "editor.parameterHints.enabled": true,
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.autoSave": "onWindowChange",
+  "git.autofetch": true,
+  "git.enableCommitSigning": true,
+  "git.enableSmartCommit": true,
+  "git.openRepositoryInParentFolders": "never",
+  "git.showPushSuccessNotification": true,
+  "markdown.extension.tableFormatter.normalizeIndentation": true,
+  "markdown.extension.toc.orderedList": true,
+  "workbench.colorTheme": "Dracula",
+  "workbench.editor.highlightModifiedTabs": true,
+  "workbench.startupEditor": "newUntitledFile",
+  "workbench.editor.enablePreview": false,
+  "workbench.editor.untitled.hint": "hidden",
+  "workbench.iconTheme": "file-icons",
+  "cmake.configureOnOpen": false,
+  "markdown.extension.print.theme": "dark",
+  "markdown.extension.toc.omittedFromToc": {},
+  "markdown.preview.breaks": true,
+  "prettier.jsxSingleQuote": true,
+  "prettier.singleQuote": true,
+  "javascript.preferences.quoteStyle": "single",
+  "typescript.preferences.quoteStyle": "single",
+  "better-comments.highlightPlainText": true,
+  "python.languageServer": "Default",
+  "cSpell.userWords": [],
+  "scss.validate": false,
+  "scss.lint.unknownAtRules": "ignore",
+  "scss.lint.unknownProperties": "ignore",
+  "liveServer.settings.donotShowInfoMsg": true,
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "redhat.telemetry.enabled": true,
+  "eslint.alwaysShowStatus": true,
+  "eslint.format.enable": true,
+  "search.showLineNumbers": true,
+  "powershell.startAsLoginShell.linux": true,
+  "powershell.codeFormatting.useCorrectCasing": true,
+  "powershell.codeFormatting.useConstantStrings": true,
+  "powershell.codeFormatting.trimWhitespaceAroundPipe": true,
+  "powershell.codeFormatting.autoCorrectAliases": true,
+  "powershell.powerShellAdditionalExePaths": {
+    "PowerShell 7": "powershell"
+  },
+  "shellcheck.enable": true,
+  "shellcheck.enableQuickFix": true,
+  "shellcheck.run": "onType",
+  "shellcheck.executablePath": "",
+  "shellcheck.ignoreFileSchemes": ["git", "gitfs"],
+  "shellcheck.exclude": [
+    "1090",
+    "1091",
+    "1017",
+    "1117",
+    "2034",
+    "2015",
+    "2009",
+    "2004",
+    "2046",
+    "2005",
+    "2116",
+    "2154",
+    "2086",
+    "2045",
+    "2089",
+    "2062",
+    "1091",
+    "2002",
+    "2010",
+    "2012",
+    "2030",
+    "2181",
+    "2129",
+    "2148",
+    "2207",
+    "2242",
+    "2294"
+  ],
+  "[jsonc]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[xml]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[vue]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[scss]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[zone]": {
+    "editor.formatOnSave": false
+  },
+  "[plaintext]": {
+    "editor.formatOnSave": false
+  },
+  "[hosts]": {
+    "editor.formatOnSave": false,
+    "editor.defaultFormatter": null
+  },
+  "cSpell.enabledLanguageIds": [
+    "asciidoc",
+    "bat",
+    "c",
+    "cpp",
+    "csharp",
+    "css",
+    "dockerfile",
+    "git-commit",
+    "go",
+    "handlebars",
+    "haskell",
+    "home-assistant",
+    "html",
+    "ini",
+    "jade",
+    "java",
+    "javascript",
+    "javascriptreact",
+    "jekyll",
+    "json",
+    "jsonc",
+    "latex",
+    "less",
+    "liquid",
+    "lua",
+    "makefile",
+    "markdown",
+    "perl",
+    "php",
+    "plaintext",
+    "powershell",
+    "pug",
+    "python",
+    "restructuredtext",
+    "ruby",
+    "rust",
+    "scala",
+    "scss",
+    "shellscript",
+    "text",
+    "typescript",
+    "typescriptreact",
+    "yaml",
+    "yml"
+  ],
+  "liquid.format": true,
+  "liquid.rules": {
+    "html": {},
+    "js": {},
+    "css": {},
+    "scss": {},
+    "json": {}
+  },
+  "[markdown]": {
+    "files.trimTrailingWhitespace": false,
+    "editor.quickSuggestions": {
+      "comments": "on",
+      "strings": "on",
+      "other": "on"
+    },
+    "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.markdownlint": true,
+    "source.fixAll.eslint": true
+  },
+  "cSpell.language": "en,en-US",
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "liveSassCompile.settings.autoprefix": [],
+  "liveSassCompile.settings.generateMap": false,
+  "liveSassCompile.settings.excludeList": ["**/node_modules/**", ".vscode/**"],
+  "liveSassCompile.settings.formats": [
+    {
+      "format": "compressed",
+      "extensionName": ".css",
+      "savePath": "/assets/css"
+    }
+  ],
+  "markdownlint.config": {
+    "MD012": false,
+    "MD013": false,
+    "MD033": false,
+    "MD041": false
+  },
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": true,
+    "strings": true
+  },
+  "[home-assistant]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": true
+    }
+  },
+  "cSpell.enabled": true,
+  "[shellscript]": {
+    "files.eol": "\n",
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "files.associations": {
+    "*.fish": "fish",
+    "sxhkdrc": "plaintext",
+    "vimrc": "viml",
+    "tmux": "tmux",
+    "*.json": "json",
+    "*.1": "manpage",
+    ".rpmmacro": "plaintext",
+    "*.sh": "shellscript"
+  },
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[dockerfile]": {
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+  },
+  "[perl]": {
+    "editor.defaultFormatter": null
+  },
+  "gremlins.characters": {
+    "000c": {
+      "zeroWidth": true,
+      "description": "FORM FEED (FF)",
+      "overviewRulerColor": "rgba(255,127,80,1)"
+    }
+  },
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "[ignore]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[properties]": {
+    "editor.defaultFormatter": null
+  },
+  "[dotenv]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "php.validate.executablePath": "php",
+  "[php]": {
+    "editor.defaultFormatter": "DEVSENSE.phptools-vscode",
+    "editor.formatOnSave": true
+  },
+  "[python]": {
+    "editor.defaultFormatter": null,
+    "editor.formatOnType": true
+  },
+  "prettier.printWidth": 160,
+  "prettier.vueIndentScriptAndStyle": true,
+  "liquid.format.wrap": 160,
+  "yaml.format.printWidth": 160,
+  "editor.minimap.maxColumn": 160,
+  "[fish]": {
+    "editor.defaultFormatter": "bmalehorn.vscode-fish"
+  }
+}
