@@ -180,10 +180,8 @@ __run_post_message() {
   true
 }
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-set -x
 # Define pre-install scripts
 __run_pre_install() {
-  set -x
   local getRunStatus=0
   if __cmd_exists code || __cmd_exists code-insiders || __cmd_exists code-oss; then
     AUR_PACKAGES=""
