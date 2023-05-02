@@ -181,12 +181,9 @@ __run_post_message() {
 }
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Define pre-install scripts
+if __cmd_exists code || __cmd_exists code-insiders || __cmd_exists code-oss; then AUR_PACKAGES=""; fi
 __run_pre_install() {
   local getRunStatus=0
-  if __cmd_exists code || __cmd_exists code-insiders || __cmd_exists code-oss; then
-    AUR_PACKAGES=""
-    return 0
-  fi
   sudo -n true || sudo true || print_exit "sudo is required to install vs-code"
   if __cmd_exists pacman; then
     return
