@@ -175,16 +175,18 @@ RUBY_GEMS=""
 PYTHON_PIP=""
 PHP_COMPOSER=""
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Run custom actions
+if __cmd_exists code || __cmd_exists code-insiders || __cmd_exists code-oss; then AUR_PACKAGES=""; fi
+sudo -n true || sudo true || print_exit "sudo is required to install vs-code" >&2
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Show a custom message after install
 __run_post_message() {
   true
 }
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Define pre-install scripts
-if __cmd_exists code || __cmd_exists code-insiders || __cmd_exists code-oss; then AUR_PACKAGES=""; fi
 __run_pre_install() {
   local getRunStatus=0
-  sudo -n true || sudo true || print_exit "sudo is required to install vs-code"
   if __cmd_exists pacman; then
     return
   elif __cmd_exists apt &>/dev/null; then
