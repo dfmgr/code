@@ -230,25 +230,24 @@ __run_prepost_install() {
 __run_post_install() {
   local getRunStatus=0
   local config_file=""
+  local plugins_file="$APPDIR/plugins.sh"
   local settings_file="$APPDIR/settings.json"
   if [ ! -f "$APPDIR/.installed" ]; then
-    if [ "$INSTALL_PLUGINS" = "true" ] && [ -f "$INSTDIR/etc/plugins.sh" ]; then
-      sh -c "$INSTDIR/etc/plugins.sh"
+    if [ "$INSTALL_PLUGINS" = "true" ] && [ -f "$plugins_file" ]; then
+      sh -c "$plugins_file"
     fi
     if if_os win; then
       config_file="$HOME/Code/User/settings.json"
       __mkdir "$HOME/Code/User"
-      [ -f "$config_file" ] || __cp_rf "$config_file" "$config_file.bak"
-      __symlink "$settings_file" "$config_file"
     elif if_os linux; then
       config_file="$HOME/.config/Code/User/settings.json"
       __mkdir "$HOME/.config/Code/User"
-      [ -f "$config_file" ] || __cp_rf "$config_file" "$config_file.bak"
-      __symlink "$settings_file" "$config_file"
     elif if_os mac; then
       config_file="$HOME/Library/Application Support/Code/User/settings.json"
       __mkdir "$HOME/Library/Application Support/Code/User"
-      [ -f "$config_file" ] || __cp_rf "$config_file" "$config_file.bak"
+    fi
+    if [ ! -L "$config_file" ]; then
+      [ -f "$config_file" ] && __cp_rf "$config_file" "$config_file.bak"
       __symlink "$settings_file" "$config_file"
     fi
   fi
