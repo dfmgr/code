@@ -183,7 +183,7 @@ __run_post_message() {
 # Define pre-install scripts
 __run_pre_install() {
   local getRunStatus=0
-  sudo -n true && sudo true || print_exit "sudo is required to install vs-code"
+  sudo -n true || sudo true || print_exit "sudo is required to install vs-code"
   { __cmd_exists code &>/dev/null || __cmd_exists code-insiders &>/dev/null; } && return 0
   if __cmd_exists apt &>/dev/null; then
     (
@@ -193,14 +193,14 @@ __run_pre_install() {
         curl -q -LSs 'https://packages.microsoft.com/keys/microsoft.asc' | sudo gpg --dearmor -o /usr/share/keyrings/ms-vscode-keyring.gpg &&
         echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/ms-vscode-keyring.gpg] "https://packages.microsoft.com/repos/vscode" stable main' | sudo tee /etc/apt/sources.list.d/vscode.list &&
         sudo apt update -yy -q &>/dev/null || return 1
-    ) | tee &>/dev/null || exitCode=1
+    ) | tee &>/dev/null || getRunStatus=1
   elif __cmd_exists dnf &>/dev/null || __cmd_exists dnf &>/dev/null; then
     (
       set -o pipefail
       sudo rpm --import "https://packages.microsoft.com/keys/microsoft.asc" &&
         sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo' &&
         yum makecache || return 1
-    ) | tee &>/dev/null || exitCode=1
+    ) | tee &>/dev/null || getRunStatus=1
 
   elif __cmd_exists zypper &>/dev/null; then
     (
@@ -208,7 +208,7 @@ __run_pre_install() {
       sudo rpm --import "https://packages.microsoft.com/keys/microsoft.asc" &&
         sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/zypp/repos.d/vscode.repo' &&
         sudo zypper refresh || return 1
-    ) | tee &>/dev/null || exitCode=1
+    ) | tee &>/dev/null || getRunStatus=1
   fi
 
   return $getRunStatus
