@@ -230,28 +230,30 @@ __run_prepost_install() {
 __run_post_install() {
   local getRunStatus=0
   local config_file=""
-  local plugins_file="$APPDIR/plugins.sh"
-  local settings_file="$APPDIR/settings.json"
-  if [ ! -f "$APPDIR/.installed" ]; then
-    if [ "$INSTALL_PLUGINS" = "true" ] && [ -f "$plugins_file" ]; then
-      sh -c "$plugins_file"
-    fi
-    if if_os win; then
-      config_file="$HOME/Code/User/settings.json"
-      __mkdir "$HOME/Code/User"
-    elif if_os linux; then
-      config_file="$HOME/.config/Code/User/settings.json"
-      __mkdir "$HOME/.config/Code/User"
-    elif if_os mac; then
-      config_file="$HOME/Library/Application Support/Code/User/settings.json"
-      __mkdir "$HOME/Library/Application Support/Code/User"
-    fi
-    if [ ! -L "$config_file" ]; then
-      [ -f "$config_file" ] && __cp_rf "$config_file" "$config_file.bak"
-      __symlink "$settings_file" "$config_file"
-    fi
+  local config_file=""
+  local code_user_dir=""
+  local plugins_file="$INSTDIR/etc/plugins.sh"
+  local settings_file="$INSTDIR/etc/settings.json"
+  if if_os win; then
+    code_user_dir="$HOME/Code/User"
+    config_file="$code_user_dir/settings.json"
+  elif if_os linux; then
+    code_user_dir="$HOME/.config/Code/User"
+    config_file="$code_user_dir/settings.json"
+  elif if_os mac; then
+    code_user_dir="$HOME/Library/Application Support/Code/User"
+    config_file="$code_user_dir/settings.json"
   fi
-  echo "$(date)" >"$APPDIR/.installed"
+  if [ -f "$code_user_dir/.installed" ]; then
+    echo "Updated on: $(date)" >"$code_user_dir/.installed"
+  else
+    __mkdir "$code_user_dir"
+    [ "$INSTALL_PLUGINS" = "true" ] && [ -f "$plugins_file" ] && sh -c "$plugins_file"
+    [ -f "$config_file" ] && __cp_rf "$config_file" "$config_file.bak"
+    [ -e "$config_file" ] && __rm_rf "$config_file"
+    __cp_rf "$settings_file" "$config_file"
+    echo "Installed on: $(date)" >"$code_user_dir/.installed"
+  fi
   return $getRunStatus
 }
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
