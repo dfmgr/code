@@ -76,9 +76,6 @@
   "powershell.codeFormatting.useConstantStrings": true,
   "powershell.codeFormatting.trimWhitespaceAroundPipe": true,
   "powershell.codeFormatting.autoCorrectAliases": true,
-  "powershell.powerShellAdditionalExePaths": {
-    "PowerShell 7": "powershell"
-  },
   "shellcheck.enable": true,
   "shellcheck.enableQuickFix": true,
   "shellcheck.run": "onType",

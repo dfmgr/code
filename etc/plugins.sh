@@ -101,7 +101,6 @@ if __cmd_exists code; then
   code --install-extension "ms-toolsai.vscode-jupyter-slideshow" --force
   code --install-extension "ms-vscode-remote.remote-containers" --force
   code --install-extension "ms-vscode.live-server" --force
-  code --install-extension "ms-vscode.powershell" --force
   code --install-extension "nhoizey.gremlins" --force
   code --install-extension "nico-castell.linux-desktop-file" --force
   code --install-extension "oderwat.indent-rainbow" --force
@@ -125,7 +124,7 @@ if __cmd_exists code; then
   code --install-extension "ZainChen.json" --force
   PLUGINS_SH_EXIT_STATUS=0
 else
-  __printf_color "Code does not seem to be install" >&2
+  __printf_color "Code does not seem to be installed" >&2
   PLUGINS_SH_EXIT_STATUS=1
 fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
