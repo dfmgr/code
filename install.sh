@@ -179,7 +179,7 @@ PYTHON_PIP=""
 PHP_COMPOSER=""
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Run custom actions
-[ -f "$INSTDIR/etc/plugins.sh" ] && INSTALL_PLUGINS="true"
+[ -f "$INSTDIR/etc/plugins.full.sh" ] && INSTALL_PLUGINS="true"
 if __cmd_exists code || __cmd_exists code-insiders || __cmd_exists code-oss; then AUR_PACKAGES=""; fi
 sudo -n true || sudo true || print_exit "sudo is required to install vs-code" >&2
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -235,7 +235,7 @@ __run_post_install() {
   local config_file=""
   local config_file=""
   local code_user_dir=""
-  local plugins_file="$INSTDIR/etc/plugins.sh"
+  local plugins_file="$INSTDIR/etc/plugins.full.sh"
   local settings_file="$INSTDIR/etc/settings.json"
   if if_os win; then
     code_user_dir="$HOME/Code/User"

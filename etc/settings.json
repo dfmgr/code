@@ -190,7 +190,7 @@
     "yaml",
     "yml"
   ],
-  "liquid.format": true,
+  "liquid.format.wrap": 160,
   "liquid.rules": {
     "html": {},
     "js": {},
@@ -303,7 +303,6 @@
   },
   "prettier.printWidth": 160,
   "prettier.vueIndentScriptAndStyle": true,
-  "liquid.format.wrap": 160,
   "yaml.format.printWidth": 160,
   "editor.minimap.maxColumn": 160,
   "[fish]": {
