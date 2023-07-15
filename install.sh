@@ -179,7 +179,6 @@ PYTHON_PIP=""
 PHP_COMPOSER=""
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Run custom actions
-[ -f "$INSTDIR/etc/plugins.full.sh" ] && INSTALL_PLUGINS="true"
 if __cmd_exists code || __cmd_exists code-insiders || __cmd_exists code-oss; then AUR_PACKAGES=""; fi
 sudo -n true || sudo true || print_exit "sudo is required to install vs-code" >&2
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -232,11 +231,18 @@ __run_prepost_install() {
 # run after primary post install function
 __run_post_install() {
   local getRunStatus=0
+  local calc_mem=""
   local config_file=""
-  local config_file=""
+  local plugins_file=""
   local code_user_dir=""
-  local plugins_file="$INSTDIR/etc/plugins.full.sh"
   local settings_file="$INSTDIR/etc/settings.json"
+  calc_mem=$(free | grep 'Mem' | awk '{print $2}')
+  calc_mem=$((calc_mem / 1024))
+  if [ "$calc_mem" -ge 4000 ]; then
+    plugins_file="$INSTDIR/etc/plugins.full.sh"
+  else
+    plugins_file="$INSTDIR/etc/plugins.min.sh"
+  fi
   if if_os win; then
     code_user_dir="$HOME/Code/User"
     config_file="$code_user_dir/settings.json"
@@ -251,10 +257,10 @@ __run_post_install() {
     echo "Updated on: $(date)" >"$code_user_dir/.installed"
   else
     __mkdir "$code_user_dir"
-    [ "$INSTALL_PLUGINS" = "true" ] && [ -f "$plugins_file" ] && sh -c "$plugins_file"
-    [ -f "$config_file" ] && __cp_rf "$config_file" "$config_file.bak"
-    [ -e "$config_file" ] && __rm_rf "$config_file"
+    __cp_rf "$config_file" "$config_file.bak"
     __cp_rf "$settings_file" "$config_file"
+    [ -e "$config_file" ] && __rm_rf "$config_file"
+    [ -n "$plugins_file" ] && [ -f "$plugins_file" ] && bash "$plugins_file"
     echo "Installed on: $(date)" >"$code_user_dir/.installed"
   fi
   return $getRunStatus
