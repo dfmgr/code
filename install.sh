@@ -191,15 +191,23 @@ __run_post_message() {
 __run_pre_install() {
   local getRunStatus=0
   if __cmd_exists pacman; then
-    return
+    return 0
   elif __cmd_exists apt &>/dev/null; then
     (
       set -o pipefail
       export DEBIAN_FRONTEND="noninteractive"
+      [ -f "/usr/share/keyrings/ms-vscode-keyring.gpg" ] && sudo rm -Rf "/usr/share/keyrings/ms-vscode-keyring.gpg"
       sudo apt-get install curl wget gpg -yy &&
-        curl -q -LSs 'https://packages.microsoft.com/keys/microsoft.asc' | sudo gpg --dearmor -o /usr/share/keyrings/ms-vscode-keyring.gpg &&
+        curl -q -LSsf 'https://packages.microsoft.com/keys/microsoft.asc' | sudo gpg --dearmor -o "/usr/share/keyrings/ms-vscode-keyring.gpg" &&
         echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/ms-vscode-keyring.gpg] "https://packages.microsoft.com/repos/vscode" stable main' | sudo tee /etc/apt/sources.list.d/vscode.list &&
         sudo apt update -yy -q &>/dev/null || return 1
+    ) | tee &>/dev/null || getRunStatus=1
+  elif __cmd_exists zypper &>/dev/null; then
+    (
+      set -o pipefail
+      sudo rpm --import "https://packages.microsoft.com/keys/microsoft.asc" &&
+        sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/zypp/repos.d/vscode.repo' &&
+        sudo zypper refresh || return 1
     ) | tee &>/dev/null || getRunStatus=1
   elif __cmd_exists dnf &>/dev/null || __cmd_exists dnf &>/dev/null; then
     (
@@ -207,14 +215,6 @@ __run_pre_install() {
       sudo rpm --import "https://packages.microsoft.com/keys/microsoft.asc" &&
         sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo' &&
         yum makecache || return 1
-    ) | tee &>/dev/null || getRunStatus=1
-
-  elif __cmd_exists zypper &>/dev/null; then
-    (
-      set -o pipefail
-      sudo rpm --import "https://packages.microsoft.com/keys/microsoft.asc" &&
-        sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/zypp/repos.d/vscode.repo' &&
-        sudo zypper refresh || return 1
     ) | tee &>/dev/null || getRunStatus=1
   fi
 
@@ -243,15 +243,15 @@ __run_post_install() {
   else
     plugins_file="$INSTDIR/etc/plugins.min.sh"
   fi
-  if if_os win; then
-    code_user_dir="$HOME/Code/User"
-    config_file="$code_user_dir/settings.json"
-  elif if_os linux; then
+  if if_os linux||[ -d "$HOME/.config/Code/User" ]; then
     code_user_dir="$HOME/.config/Code/User"
-    config_file="$code_user_dir/settings.json"
-  elif if_os mac; then
+    config_file="$HOME/.config/Code/User/settings.json"
+  elif if_os mac||[ -d "$HOME/Library/Application Support/Code/User" ]; then
     code_user_dir="$HOME/Library/Application Support/Code/User"
-    config_file="$code_user_dir/settings.json"
+    config_file="$HOME/Library/Application Support/Code/User/settings.json"
+  elif if_os win||[ -d "$HOME/Code/User" ]; then
+    code_user_dir="$HOME/Code/User"
+    config_file="$HOME/Code/User/settings.json"
   fi
   if [ -f "$code_user_dir/.installed" ]; then
     echo "Updated on: $(date)" >"$code_user_dir/.installed"
@@ -259,7 +259,6 @@ __run_post_install() {
     __mkdir "$code_user_dir"
     __cp_rf "$config_file" "$config_file.bak"
     __cp_rf "$settings_file" "$config_file"
-    [ -e "$config_file" ] && __rm_rf "$config_file"
     [ -n "$plugins_file" ] && [ -f "$plugins_file" ] && bash "$plugins_file"
     echo "Installed on: $(date)" >"$code_user_dir/.installed"
   fi
