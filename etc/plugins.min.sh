@@ -52,6 +52,7 @@ if __cmd_exists code; then
   code --install-extension "aaron-bond.better-comments" --force
   code --install-extension "dracula-theme.theme-dracula" --force
   code --install-extension "EditorConfig.EditorConfig" --force
+  code --install-extension "esbenp.prettier-vscode" --force
   code --install-extension "file-icons.file-icons" --force
   code --install-extension "formulahendry.auto-rename-tag" --force
   code --install-extension "foxundermoon.shell-format" --force

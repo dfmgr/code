@@ -243,13 +243,13 @@ __run_post_install() {
   else
     plugins_file="$INSTDIR/etc/plugins.min.sh"
   fi
-  if if_os linux||[ -d "$HOME/.config/Code/User" ]; then
+  if if_os linux || [ -d "$HOME/.config/Code/User" ]; then
     code_user_dir="$HOME/.config/Code/User"
     config_file="$HOME/.config/Code/User/settings.json"
-  elif if_os mac||[ -d "$HOME/Library/Application Support/Code/User" ]; then
+  elif if_os mac || [ -d "$HOME/Library/Application Support/Code/User" ]; then
     code_user_dir="$HOME/Library/Application Support/Code/User"
     config_file="$HOME/Library/Application Support/Code/User/settings.json"
-  elif if_os win||[ -d "$HOME/Code/User" ]; then
+  elif if_os win || [ -d "$HOME/Code/User" ]; then
     code_user_dir="$HOME/Code/User"
     config_file="$HOME/Code/User/settings.json"
   fi
