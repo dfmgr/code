@@ -61,7 +61,6 @@ if __cmd_exists code; then
   code --install-extension "bierner.markdown-preview-github-styles" --force
   code --install-extension "bierner.markdown-yaml-preamble" --force
   code --install-extension "bmalehorn.vscode-fish" --force
-  code --install-extension "bungcip.better-toml" --force
   code --install-extension "Compilenix.vscode-zonefile" --force
   code --install-extension "compilouit.manpage" --force
   code --install-extension "coolbear.systemd-unit-file" --force
@@ -109,6 +108,7 @@ if __cmd_exists code; then
   code --install-extension "ritwickdey.LiveServer" --force
   code --install-extension "rpinski.shebang-snippets" --force
   code --install-extension "sissel.shopify-liquid" --force
+  code --install-extension "tamasfe.even-better-toml" --force
   code --install-extension "timonwong.shellcheck" --force
   code --install-extension "tommasov.hosts" --force
   code --install-extension "TzachOvadia.todo-list" --force
